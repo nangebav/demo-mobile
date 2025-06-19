@@ -2,416 +2,336 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Galería de Motos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Motos Honda Sahara</title>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <style>
-   </style>
-</head>
-<body>
-
-    <style>
-
-
-
-.detail {
-  background: transparent;
-  background-size: cover;
-  height: 100vh;
-  min-height: 700px;
-  max-height: 900px;
-  position: relative;
-  overflow: hidden;
-  /* Aseguramos que esta sección no interrumpa el scroll natural */
-  scroll-snap-align: start;
-}
-
-.container__scroll {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.container__detail {
-  width: 1064px;
-  height: 80%;
-  min-height: 640px;
-  position: relative;
-}
-
-.detail__item {
-  visibility: hidden; /* Inicialmente oculto para animación con GSAP */
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.detail__item.active {
-  visibility: visible;
-}
-
-.detail__item__info {
-  max-width: 580px;
-  opacity: 0; /* Para animación con GSAP */
-}
-
-.detail__item__info img {
-  margin-bottom: 40px;
-}
-
-.detail__item__info p {
-  font-size: 20px;
-}
-
-.detail__item__image {
-  width: 414px;
-  opacity: 0; /* Para animación con GSAP */
-}
-
-.detail__item__image img {
-  width: 100%;
-}
-
-/* Barra de scroll vertical */
-.scroll-track {
-  position: absolute;
-  right: -20px; /* Coloca la barra fuera del área principal para no interferir con la imagen */
-  top: 50%;
-  transform: translateY(-50%);
-  height: 60%; /* Altura de la barra de scroll */
-  width: 4px;
-  background-color: rgba(56, 54, 54, 0.6);
-  border-radius: 2px;
-}
-
-.scroll-thumb {
-  width: 100%;
-  height: 25%; /* Tamaño inicial del thumb, se ajustará con JavaScript */
-  background-color: #ff0000;
-  border-radius: 2px;
-  position: absolute;
-  top: 0;
-  transition: top 0.3s ease;
-}
-
-/* DETAIL END */
-
-/* DETAIL MOBILE */
-
-.detailMobile {
-  background: transparent;
-  background-size: cover;
-  height: auto;
-  min-height: 100dvh;
-  padding: 50px 0 74px 40px;
-  display: none;
-  .detail__container {
+    :root {
+      --color-white: #ffffff;
+      --color-black: #000000;
+      --color-red: #ff0000;
+      --color-blue: rgba(0, 8, 109, 0.6);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    body {
+      background: #f5f5f5;
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    /* DETAIL DESKTOP */
+    .detail {
+      background: transparent;
+      background-size: cover;
+      height: 100vh;
+      min-height: 700px;
+      max-height: 900px;
+      position: relative;
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+    
+    .container__scroll {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .container__detail {
+      width: 1064px;
+      height: 80%;
+      min-height: 640px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .detail__item {
+      visibility: hidden;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+    
+    .detail__item.active {
+      visibility: visible;
+    }
+    
+    .detail__item__info {
+      max-width: 580px;
+      opacity: 0;
+      padding: 20px;
+    }
+    
+    .detail__item__info img {
+      margin-bottom: 40px;
+      max-width: 300px;
+    }
+    
+    .detail__item__info p {
+      font-size: 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    .detail__item__image {
+      width: 414px;
+      opacity: 0;
+      text-align: center;
+    }
+    
+    .detail__item__image img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+    }
+    
+    /* Barra de scroll vertical */
+    .scroll-track {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 60%;
+      width: 4px;
+      background-color: rgba(56, 54, 54, 0.6);
+      border-radius: 2px;
+    }
+    
+    .scroll-thumb {
+      width: 100%;
+      height: 25%;
+      background-color: #ff0000;
+      border-radius: 2px;
+      position: absolute;
+      top: 0;
+      transition: top 0.3s ease;
+    }
+    
+    /* DETAIL MOBILE */
+    .detailMobile {
+      background: transparent;
+      background-size: cover;
+      height: auto;
+      min-height: 100dvh;
+      padding: 50px 20px;
+      display: none;
+    }
+    
+    .detail__container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
     .detailMobile__title {
-      height: 183px;
+      height: auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      img {
-        width: 90%;
-        max-width: 360px;
-      }
+      margin-bottom: 30px;
     }
+    
+    .detailMobile__title img {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    
     .detailMobileText {
-      p {
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--color-black);
-        padding-right: 30px;
-        min-height: 150px;
-      }
+      margin-top: 20px;
     }
+    
+    .detailMobileText p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-black);
+      text-align: center;
+      padding: 0 10px;
+    }
+    
     .swiperDetailMobile {
       margin: 30px 0 20px 0;
-      .swiper-wrapper {
-        height: auto !important;
-        .swiper-slide {
-          width: 290px !important;
-          img {
-            width: 100%;
-          }
-        }
-      }
     }
-  }
-}
-
-.colors {
-  background: url(../images/bg-colors.webp) no-repeat center center;
-  background-size: cover;
-  height: 100vh;
-  min-height: 700px;
-  max-height: 900px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  .colors__title--mobile {
-    display: none;
-  }
-  .colors__container {
-    width: 100%;
-    max-width: 1540px;
-    display: flex;
-    flex-direction: row;
+    
+    .swiperDetailMobile .swiper-wrapper {
+      height: auto !important;
+    }
+    
+    .swiperDetailMobile .swiper-slide {
+      width: 290px !important;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .swiperDetailMobile .swiper-slide img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+    }
+    
+    /* Colores */
+    .colors {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+      background-size: cover;
+      height: 100vh;
+      min-height: 700px;
+      max-height: 900px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .colors__title--mobile {
+      display: none;
+      width: 80%;
+      max-width: 300px;
+      margin: 0 auto 60px;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .colors__container {
+      width: 100%;
+      max-width: 1540px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    
     .colors__info {
       width: 50%;
       max-width: 900px;
       text-align: right;
-      .colors__list {
-        margin-top: 100px;
-        width: 90%;
-        ul {
-          li {
-            font-size: 70px;
-            line-height: 1.2;
-            color: var(--color-white);
-            background: rgba(0, 8, 109, 0.6);
-            text-align: right;
-            padding: 0 30px 0 0;
-            list-style: none !important;
-          }
-        }
-      }
     }
+    
+    .colors__list {
+      margin-top: 100px;
+      width: 90%;
+    }
+    
+    .colors__list ul {
+      padding: 0;
+    }
+    
+    .colors__list ul li {
+      font-size: 48px;
+      line-height: 1.2;
+      color: var(--color-white);
+      background: var(--color-blue);
+      text-align: right;
+      padding: 0 30px 0 0;
+      list-style: none;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    
     .colors__moto {
       width: 600px;
       margin-top: 140px;
-      img {
-        width: 100%;
+    }
+    
+    .colors__moto img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1300px) {
+      .container__detail {
+        width: 90%;
+      }
+      
+      .colors__list ul li {
+        font-size: 40px;
       }
     }
-  }
-}
-
-@media (max-width: 1300px) {
-  .container__inner {
-    width: 94%;
-  }
-  .hero {
-    .container__inner {
-      .hero__content {
-        .precios {
-          margin: 40px 0;
-        }
+    
+    @media (max-width: 1100px) {
+      .detail {
+        display: none;
       }
-    }
-  }
-}
-@media (max-width: 1100px) {
-  .hero {
-    .container__inner {
-      gap: 20px;
-      figure {
-        width: 420px;
+      
+      .detailMobile {
+        display: block;
       }
-      .hero__content {
-        img {
-          width: 320px;
-        }
-        .precios {
-          .precios__item {
-            p {
-              font-size: 50px;
-              sup,
-              span {
-                font-size: 30px;
-              }
-            }
-          }
-        }
+      
+      .colors {
+        height: auto;
+        min-height: 100vh;
+        padding: 60px 20px;
       }
-    }
-  }
-  .detail {
-    display: none;
-  }
-  .detailMobile {
-    display: block;
-  }
-  .colors {
-    .colors__title--mobile {
-      display: block;
-      width: 80%;
-      max-width: 300px;
-      margin: 0 auto 60px;
-    }
-    .colors__container {
-      flex-direction: column-reverse;
+      
+      .colors__title--mobile {
+        display: block;
+      }
+      
+      .colors__container {
+        flex-direction: column-reverse;
+      }
+      
       .colors__info {
         width: 100%;
-        img {
-          display: none;
-        }
-        .colors__list {
-          width: 60%;
-          margin: 40px 0 0 0;
-          ul {
-            li {
-              font-size: 40px;
-              padding: 0 13px 0 0;
-            }
-          }
-        }
+        text-align: center;
       }
+      
+      .colors__info img {
+        display: none;
+      }
+      
+      .colors__list {
+        width: 100%;
+        margin: 40px 0 0 0;
+      }
+      
+      .colors__list ul li {
+        font-size: 32px;
+        text-align: center;
+        padding: 10px;
+      }
+      
       .colors__moto {
         width: 90%;
         max-width: 400px;
         margin: 0 auto;
       }
     }
-  }
-}
-
-    </style>
-
-<section class="detail">
-		<div class="container__scroll">
-			<div class="container__detail">
-
-				<div id="item1" class="detail__item active">
-					<div class="detail__item__info">
-						<img
-                        src="./static/images/04/DISEÑO.png"
-                        alt="Diseño" id="detailMobileImage" />
-						<p>
-							Se caracteriza por ser una moto de diseño agresivo, aventurero, moderno y deportivo, con una estructura 
-                            compacta reflejando un estilo sólido y moderno. Desde su silueta elevada hasta los acabados angulados, 
-                            la moto transmite que está hecha para explorar cualquier camino.
-						</p>
-					</div>
-					<figure class="detail__item__image">
-						<img
-							src="./static/images/img_2.png"
-							alt="Foto suspensión invertida" />
-					</figure>
-				</div>
-
-				<div id="item2" class="detail__item">
-					<div class="detail__item__info">
-						<img
-                        src="./static/images/04/TECNOLOGIA.png"
-                        alt="Tecnologia" id="detailMobileImage" />
-						<p>
-							Integra tecnología diseñada para ofrecer confianza, rendimiento y durabilidad tanto en ciudad como fuera de ella. Equipada con sistema de frenos ABS en ambas ruedas, para frenada más segura, iluminación full LED, panel digital LCD con indicador de marcha y computadora de abordo, puerto USB-C para carga de dispositivos, sistema de señalización de frenada de emergencia (ESS). Todo esto sobre una suspensión de largo recorrido y chasis robusto, lo que convierte a la Sahara en una moto tecnológicamente preparada para cualquier terreno.
-						</p>
-					</div>
-					<figure class="detail__item__image">
-						<img
-							src="./static/images/img_2.png"
-							alt="Foto suspensión invertida" />
-					</figure>
-				</div>
-
-				<div id="item3" class="detail__item">
-					<div class="detail__item__info">
-						<img
-                        src="./static/images/04/MOTOR.png"
-                        alt="Diseño" id="detailMobileImage" />
-						<p>
-							El motor de la Honda XRE 300 Sahara es uno de sus mayores atributos: un monocilíndrico de 293.5 cc, 4 tiempos, con inyección electrónica PGM-FI y refrigeración por aire, que entrega una potencia sólida y constante, ideal tanto para la ciudad como para rutas más exigentes. Su torque permite una excelente respuesta en baja y media velocidad, perfecto para superar terrenos irregulares o adelantar con confianza. Es un motor confiable, de bajo mantenimiento y probado en condiciones reales, lo que lo convierte en el aliado ideal para quienes buscan durabilidad, eficiencia y fuerza en cada aventura.
-						</p>
-					</div>
-					<figure class="detail__item__image">
-						<img
-							src="./static/images/img_2.png"
-							alt="Foto suspensión invertida" />
-					</figure>
-				</div>
-
-				<!-- Barra de scroll vertical -->
-				<div class="scroll-track">
-					<div class="scroll-thumb"></div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<div class="detailMobile">
-		<div class="detail__container">
-			<div class="detailMobile__title">
-				<img
-					src="./static/images/04/DISEÑO.png"
-					alt="Diseño" id="detailMobileImage" />
-			</div>
-			<div class="swiper swiperDetailMobile">
-				<div class="swiper-wrapper">
-					
-					<div class="swiper-slide" data-title="Embrague antirrebote"
-						data-image="https://motos.honda.com.pe/wp-content/themes/grandprix-child/resources/overviews/cb300-twister/static/images/embrague.png"
-						data-text="Equipada con un embrague antirrebote asistido para evitar que la rueda posterior se bloquee al bajar de marcha (reducir cambio) causado por un frenado rápido del motor.">
-						<img
-							src="https://motos.honda.com.pe/wp-content/themes/grandprix-child/resources/overviews/cb300-twister/static/images/embrague-foto.webp"
-							alt="Foto Embrague antirrebote" />
-					</div>
-				</div>
-			</div>
-			<div class="detailMobileText">
-				<p id="detailMobileText">
-					La suspensión invertida le da a tu moto una mayor estabilidad cuando
-					vas a alta velocidad. Además, absorbe mejor los impactos en terrenos
-					exigentes, como baches y huecos en la pista, permitiéndote una
-					conducción más suave y controlada. Ofrece mayor precisión en las
-					curvas y te brinda una respuesta más firme y segura.
-				</p>
-			</div>
-		</div>
-	</div>
-
-  
-</body>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-<script>
-
-    const scrollDetail = () => {
-  // Elementos principales
-  const detailItems = document.querySelectorAll(".detail__item");
-  const detailSection = document.querySelector(".detail");
-  const scrollThumb = document.querySelector(".scroll-thumb");
-  const scrollTrack = document.querySelector(".scroll-track");
-
-  // Crear el contenedor de dots dinámicamente
-  function createDots() {
-    // Crear el contenedor de dots
-    const dotsContainer = document.createElement("div");
-    dotsContainer.className = "dots-navigation";
-
-    // Crear un dot por cada item de detalle
-    detailItems.forEach((_, index) => {
-      const dot = document.createElement("button");
-      dot.className = index === 0 ? "dot active" : "dot";
-      dot.setAttribute("data-index", index);
-      dot.setAttribute("aria-label", `Ver característica ${index + 1}`);
-      dotsContainer.appendChild(dot);
-    });
-
-    // Añadir el contenedor de dots al contenedor de detalle
-    document.querySelector(".container__detail").appendChild(dotsContainer);
-
-    // Actualizar la referencia a los dots
-    return document.querySelectorAll(".dot");
-  }
-
-  // Generar los dots y obtener referencia
-  const dots = createDots();
-
-  // Estilos para los dots (se añaden dinámicamente)
-  const style = document.createElement("style");
-  style.textContent = `
+    
+    @media (max-width: 768px) {
+      .detail__item__info p {
+        font-size: 16px;
+      }
+      
+      .colors__list ul li {
+        font-size: 24px;
+      }
+    }
+    
+    /* Dots Navigation */
     .dots-navigation {
       position: absolute;
-      right: -60px; /* Coloca los dots a la derecha del scroll-track */
+      right: -60px;
       top: 50%;
       transform: translateY(-50%);
       display: flex;
@@ -436,425 +356,506 @@
     }
     
     .dot.active {
-      background-color: #ff0000;
+      background-color: var(--color-red);
       transform: scale(1.2);
     }
-  `;
-  document.head.appendChild(style);
-
-  // Variables de estado
-  let currentIndex = 0;
-  const totalItems = detailItems.length;
-  let isAnimating = false;
-
-  // Configuración de duración de animaciones
-  const animDuration = 0.7;
-
-  // Estado de la sección en el viewport
-  let isInViewport = false;
-  let isFullyVisible = false;
-
-  // Variable para controlar si debemos bloquear el scroll
-  let blockPageScroll = false;
-
-  // Función para actualizar la navegación (thumb y dots)
-  function updateNavigation() {
-    if (!scrollThumb) return;
-
-    const progress = currentIndex / (totalItems - 1);
-    const maxTop = scrollTrack.clientHeight - scrollThumb.clientHeight;
-
-    gsap.to(scrollThumb, {
-      top: `${progress * maxTop}px`,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-
-    // Actualizar dots - activar el actual y desactivar los demás
-    dots.forEach((dot, index) => {
-      if (index === currentIndex) {
-        dot.classList.add("active");
-      } else {
-        dot.classList.remove("active");
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      display: none;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 15px;
+    }
+    
+    .mobile-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(56, 54, 54, 0.5);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-dot.active {
+      background-color: var(--color-red);
+      transform: scale(1.2);
+    }
+    
+    @media (max-width: 1100px) {
+      .mobile-nav {
+        display: flex;
       }
-    });
-  }
-
-  // Función para mostrar un item específico con animación
-  function showItem(index, direction = "next") {
-    // Validar que el índice esté dentro del rango
-    if (index < 0 || index >= totalItems || isAnimating) {
-      return;
     }
+  </style>
+</head>
+<body>
+  <!-- Sección de detalles (Desktop) -->
+  <section class="detail">
+    <div class="container__scroll">
+      <div class="container__detail">
+        <!-- Item 1: Diseño -->
+        <div id="item1" class="detail__item active">
+          <div class="detail__item__info">
+            <img src="https://via.placeholder.com/300x80/1a2a6c/ffffff?text=DISEÑO" alt="Diseño">
+            <p>
+              Se caracteriza por ser una moto de diseño agresivo, aventurero, moderno y deportivo, con una estructura 
+              compacta reflejando un estilo sólido y moderno. Desde su silueta elevada hasta los acabados angulados, 
+              la moto transmite que está hecha para explorar cualquier camino.
+            </p>
+          </div>
+          <figure class="detail__item__image">
+            <img src="https://via.placeholder.com/400x500/333333/ffffff?text=MOTO+DISEÑO" alt="Foto diseño">
+          </figure>
+        </div>
 
-    isAnimating = true;
-    blockPageScroll = true; // Bloqueamos el scroll mientras hay animación
+        <!-- Item 2: Tecnología -->
+        <div id="item2" class="detail__item">
+          <div class="detail__item__info">
+            <img src="https://via.placeholder.com/300x80/b21f1f/ffffff?text=TECNOLOGÍA" alt="Tecnologia">
+            <p>
+              Integra tecnología diseñada para ofrecer confianza, rendimiento y durabilidad tanto en ciudad como fuera de ella. Equipada con sistema de frenos ABS en ambas ruedas, para frenada más segura, iluminación full LED, panel digital LCD con indicador de marcha y computadora de abordo, puerto USB-C para carga de dispositivos, sistema de señalización de frenada de emergencia (ESS). Todo esto sobre una suspensión de largo recorrido y chasis robusto, lo que convierte a la Sahara en una moto tecnológicamente preparada para cualquier terreno.
+            </p>
+          </div>
+          <figure class="detail__item__image">
+            <img src="https://via.placeholder.com/400x500/333333/ffffff?text=MOTO+TECNOLOGÍA" alt="Foto tecnología">
+          </figure>
+        </div>
 
-    const currentItem = detailItems[currentIndex];
-    const nextItem = detailItems[index];
+        <!-- Item 3: Motor -->
+        <div id="item3" class="detail__item">
+          <div class="detail__item__info">
+            <img src="https://via.placeholder.com/300x80/fdbb2d/000000?text=MOTOR" alt="Motor">
+            <p>
+              El motor de la Honda XRE 300 Sahara es uno de sus mayores atributos: un monocilíndrico de 293.5 cc, 4 tiempos, con inyección electrónica PGM-FI y refrigeración por aire, que entrega una potencia sólida y constante, ideal tanto para la ciudad como para rutas más exigentes. Su torque permite una excelente respuesta en baja y media velocidad, perfecto para superar terrenos irregulares o adelantar con confianza. Es un motor confiable, de bajo mantenimiento y probado en condiciones reales, lo que lo convierte en el aliado ideal para quienes buscan durabilidad, eficiencia y fuerza en cada aventura.
+            </p>
+          </div>
+          <figure class="detail__item__image">
+            <img src="https://via.placeholder.com/400x500/333333/ffffff?text=MOTO+MOTOR" alt="Foto motor">
+          </figure>
+        </div>
 
-    // Determinamos la dirección basada en los índices si es "auto"
-    if (direction === "auto") {
-      direction = index > currentIndex ? "next" : "prev";
-    }
+        <!-- Barra de scroll vertical -->
+        <div class="scroll-track">
+          <div class="scroll-thumb"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    // Dirección de animación
-    const yOffsetOut = direction === "next" ? -100 : 100;
-    const yOffsetIn = direction === "next" ? 100 : -100;
+  <!-- Sección de detalles (Mobile) -->
+  <div class="detailMobile">
+    <div class="detail__container">
+      <div class="detailMobile__title">
+        <img src="https://via.placeholder.com/300x80/1a2a6c/ffffff?text=DISEÑO" alt="Diseño" id="detailMobileTitle">
+      </div>
+      
+      <div class="swiper swiperDetailMobile">
+        <div class="swiper-wrapper">
+          <!-- Slide 1: Diseño -->
+          <div class="swiper-slide" data-title="Diseño" data-image="https://via.placeholder.com/300x80/1a2a6c/ffffff?text=DISEÑO" data-text="Se caracteriza por ser una moto de diseño agresivo, aventurero, moderno y deportivo, con una estructura compacta reflejando un estilo sólido y moderno. Desde su silueta elevada hasta los acabados angulados, la moto transmite que está hecha para explorar cualquier camino.">
+            <img src="https://via.placeholder.com/400x500/333333/ffffff?text=MOTO+DISEÑO" alt="Foto diseño">
+          </div>
+          
+          <!-- Slide 2: Tecnología -->
+          <div class="swiper-slide" data-title="Tecnología" data-image="https://via.placeholder.com/300x80/b21f1f/ffffff?text=TECNOLOGÍA" data-text="Integra tecnología diseñada para ofrecer confianza, rendimiento y durabilidad tanto en ciudad como fuera de ella. Equipada con sistema de frenos ABS en ambas ruedas, para frenada más segura, iluminación full LED, panel digital LCD con indicador de marcha y computadora de abordo, puerto USB-C para carga de dispositivos, sistema de señalización de frenada de emergencia (ESS). Todo esto sobre una suspensión de largo recorrido y chasis robusto, lo que convierte a la Sahara en una moto tecnológicamente preparada para cualquier terreno.">
+            <img src="https://via.placeholder.com/400x500/333333/ffffff?text=MOTO+TECNOLOGÍA" alt="Foto tecnología">
+          </div>
+          
+          <!-- Slide 3: Motor -->
+          <div class="swiper-slide" data-title="Motor" data-image="https://via.placeholder.com/300x80/fdbb2d/000000?text=MOTOR" data-text="El motor de la Honda XRE 300 Sahara es uno de sus mayores atributos: un monocilíndrico de 293.5 cc, 4 tiempos, con inyección electrónica PGM-FI y refrigeración por aire, que entrega una potencia sólida y constante, ideal tanto para la ciudad como para rutas más exigentes. Su torque permite una excelente respuesta en baja y media velocidad, perfecto para superar terrenos irregulares o adelantar con confianza. Es un motor confiable, de bajo mantenimiento y probado en condiciones reales, lo que lo convierte en el aliado ideal para quienes buscan durabilidad, eficiencia y fuerza en cada aventura.">
+            <img src="https://via.placeholder.com/400x500/333333/ffffff?text=MOTO+MOTOR" alt="Foto motor">
+          </div>
+        </div>
+      </div>
+      
+      <div class="detailMobileText">
+        <p id="detailMobileText">
+          Se caracteriza por ser una moto de diseño agresivo, aventurero, moderno y deportivo, con una estructura compacta reflejando un estilo sólido y moderno. Desde su silueta elevada hasta los acabados angulados, la moto transmite que está hecha para explorar cualquier camino.
+        </p>
+      </div>
+      
+      <div class="mobile-nav">
+        <button class="mobile-dot active" data-index="0"></button>
+        <button class="mobile-dot" data-index="1"></button>
+        <button class="mobile-dot" data-index="2"></button>
+      </div>
+    </div>
+  </div>
 
-    // Si hay un elemento activo, animarlo hacia fuera
-    if (currentItem.classList.contains("active")) {
-      gsap.to(currentItem.querySelector(".detail__item__info"), {
-        y: yOffsetOut,
-        opacity: 0,
-        duration: animDuration / 2,
-        ease: "power2.inOut",
-      });
+  <!-- Sección de colores -->
+  <section class="colors">
+    <h2 class="colors__title--mobile">Colores Disponibles</h2>
+    <div class="colors__container">
+      <div class="colors__info">
+        <div class="colors__list">
+          <ul>
+            <li>Rojo Intenso</li>
+            <li>Azul Profundo</li>
+            <li>Negro Elegante</li>
+            <li>Blanco Nítido</li>
+          </ul>
+        </div>
+      </div>
+      <div class="colors__moto">
+        <img src="https://via.placeholder.com/600x400/1a2a6c/ffffff?text=MOTO+COLORES" alt="Moto en colores">
+      </div>
+    </div>
+  </section>
 
-      gsap.to(currentItem.querySelector(".detail__item__image"), {
-        y: yOffsetOut,
-        opacity: 0,
-        duration: animDuration / 2,
-        ease: "power2.inOut",
-        onComplete: () => {
-          currentItem.classList.remove("active");
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  
+  <script>
+    // Función para manejar el scroll personalizado en desktop
+    const scrollDetail = () => {
+      // Elementos principales
+      const detailItems = document.querySelectorAll(".detail__item");
+      const detailSection = document.querySelector(".detail");
+      const scrollThumb = document.querySelector(".scroll-thumb");
+      const scrollTrack = document.querySelector(".scroll-track");
+      const mobileDots = document.querySelectorAll('.mobile-dot');
 
-          // Preparar el nuevo elemento
+      // Crear el contenedor de dots dinámicamente
+      function createDots() {
+        const dotsContainer = document.createElement("div");
+        dotsContainer.className = "dots-navigation";
+
+        detailItems.forEach((_, index) => {
+          const dot = document.createElement("button");
+          dot.className = index === 0 ? "dot active" : "dot";
+          dot.setAttribute("data-index", index);
+          dot.setAttribute("aria-label", `Ver característica ${index + 1}`);
+          dotsContainer.appendChild(dot);
+        });
+
+        document.querySelector(".container__detail").appendChild(dotsContainer);
+        return document.querySelectorAll(".dot");
+      }
+
+      // Generar los dots y obtener referencia
+      const dots = createDots();
+
+      // Variables de estado
+      let currentIndex = 0;
+      const totalItems = detailItems.length;
+      let isAnimating = false;
+      let isInViewport = false;
+      let blockPageScroll = false;
+      let lastScrollTime = 0;
+      const scrollThreshold = 300;
+      const animDuration = 0.7;
+
+      // Función para actualizar la navegación
+      function updateNavigation() {
+        if (!scrollThumb) return;
+
+        const progress = currentIndex / (totalItems - 1);
+        const maxTop = scrollTrack.clientHeight - scrollThumb.clientHeight;
+
+        gsap.to(scrollThumb, {
+          top: `${progress * maxTop}px`,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentIndex);
+        });
+        
+        mobileDots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentIndex);
+        });
+      }
+
+      // Función para mostrar un item específico con animación
+      function showItem(index, direction = "next") {
+        if (index < 0 || index >= totalItems || isAnimating) return;
+
+        isAnimating = true;
+        blockPageScroll = true;
+
+        const currentItem = detailItems[currentIndex];
+        const nextItem = detailItems[index];
+
+        if (direction === "auto") {
+          direction = index > currentIndex ? "next" : "prev";
+        }
+
+        const yOffsetOut = direction === "next" ? -100 : 100;
+        const yOffsetIn = direction === "next" ? 100 : -100;
+
+        if (currentItem.classList.contains("active")) {
+          gsap.to(currentItem.querySelector(".detail__item__info"), {
+            y: yOffsetOut,
+            opacity: 0,
+            duration: animDuration / 2,
+            ease: "power2.inOut",
+          });
+
+          gsap.to(currentItem.querySelector(".detail__item__image"), {
+            y: yOffsetOut,
+            opacity: 0,
+            duration: animDuration / 2,
+            ease: "power2.inOut",
+            onComplete: () => {
+              currentItem.classList.remove("active");
+              nextItem.classList.add("active");
+
+              gsap.set(nextItem.querySelector(".detail__item__info"), {
+                y: yOffsetIn,
+                opacity: 0,
+              });
+
+              gsap.set(nextItem.querySelector(".detail__item__image"), {
+                y: yOffsetIn,
+                opacity: 0,
+              });
+
+              gsap.to(nextItem.querySelector(".detail__item__info"), {
+                y: 0,
+                opacity: 1,
+                duration: animDuration / 2,
+                ease: "power2.out",
+              });
+
+              gsap.to(nextItem.querySelector(".detail__item__image"), {
+                y: 0,
+                opacity: 1,
+                duration: animDuration / 2,
+                ease: "power2.out",
+                onComplete: () => {
+                  isAnimating = false;
+                  updateNavigation();
+                  if (index === 0 || index === totalItems - 1) {
+                    setTimeout(() => {
+                      blockPageScroll = false;
+                    }, 200);
+                  }
+                },
+              });
+            },
+          });
+        } else {
           nextItem.classList.add("active");
 
-          // Posicionar elementos fuera de la vista
-          gsap.set(nextItem.querySelector(".detail__item__info"), {
-            y: yOffsetIn,
+          gsap.from(nextItem.querySelector(".detail__item__info"), {
+            y: 30,
             opacity: 0,
-          });
-
-          gsap.set(nextItem.querySelector(".detail__item__image"), {
-            y: yOffsetIn,
-            opacity: 0,
-          });
-
-          // Animar entrada del nuevo elemento
-          gsap.to(nextItem.querySelector(".detail__item__info"), {
-            y: 0,
-            opacity: 1,
             duration: animDuration / 2,
             ease: "power2.out",
           });
 
-          gsap.to(nextItem.querySelector(".detail__item__image"), {
-            y: 0,
-            opacity: 1,
+          gsap.from(nextItem.querySelector(".detail__item__image"), {
+            y: 30,
+            opacity: 0,
             duration: animDuration / 2,
             ease: "power2.out",
             onComplete: () => {
               isAnimating = false;
               updateNavigation();
-
-              // Determinamos si aún debemos bloquear el scroll
-              // Solo desbloqueamos si hemos llegado al inicio o al final
-              if (index === 0 || index === totalItems - 1) {
-                setTimeout(() => {
-                  blockPageScroll = false;
-                }, 200); // Pequeño retraso para evitar scroll accidental
-              }
+              blockPageScroll = false;
             },
           });
-        },
-      });
-    } else {
-      // Si no hay elemento activo (primera carga)
-      nextItem.classList.add("active");
-
-      gsap.from(nextItem.querySelector(".detail__item__info"), {
-        y: 30,
-        opacity: 0,
-        duration: animDuration / 2,
-        ease: "power2.out",
-      });
-
-      gsap.from(nextItem.querySelector(".detail__item__image"), {
-        y: 30,
-        opacity: 0,
-        duration: animDuration / 2,
-        ease: "power2.out",
-        onComplete: () => {
-          isAnimating = false;
-          updateNavigation();
-
-          // En la primera carga no bloqueamos el scroll
-          blockPageScroll = false;
-        },
-      });
-    }
-
-    currentIndex = index;
-  }
-
-  // Función para manejar el clic en los dots
-  function handleDotClick(event) {
-    if (isAnimating) return;
-
-    const dot = event.target;
-    const targetIndex = parseInt(dot.getAttribute("data-index"), 10);
-
-    if (targetIndex !== currentIndex) {
-      // Usamos "auto" para que la dirección se determine basada en los índices
-      showItem(targetIndex, "auto");
-    }
-  }
-
-  // Función para verificar si un elemento está en el viewport
-  function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    const viewportHeight =
-      window.innerHeight || document.documentElement.clientHeight;
-
-    // Verificamos si está completamente en viewport
-    const isFullyInView = rect.top >= 0 && rect.bottom <= viewportHeight;
-
-    // Consideramos que está en viewport cuando al menos el 70% de la sección es visible
-    const isPartiallyInView =
-      rect.top <= viewportHeight * 0.3 && rect.bottom >= viewportHeight * 0.3;
-
-    isFullyVisible = isFullyInView;
-    return isPartiallyInView;
-  }
-
-  // Variable para rastrear el último tiempo de scroll para throttling
-  let lastScrollTime = 0;
-  const scrollThreshold = 300; // Tiempo en ms entre cambios de ítem
-
-  // Función para manejar el bloqueo del scroll de la página
-  function preventScroll(event) {
-    if (blockPageScroll && isFullyVisible) {
-      event.preventDefault();
-      return false;
-    }
-  }
-
-  // Manejador principal de eventos de rueda
-  function handleWheel(event) {
-    // Verificamos si la sección está en viewport
-    isInViewport = isElementInViewport(detailSection);
-
-    if (!isInViewport) return;
-
-    // Si no estamos en el primer o último item, o estamos animando, bloqueamos siempre
-    if ((currentIndex > 0 && currentIndex < totalItems - 1) || isAnimating) {
-      event.preventDefault();
-    }
-
-    // Si estamos en el primer ítem y hacemos scroll hacia arriba, no bloqueamos
-    if (currentIndex === 0 && event.deltaY < 0 && !isAnimating) {
-      return;
-    }
-
-    // Si estamos en el último ítem y hacemos scroll hacia abajo, no bloqueamos
-    if (currentIndex === totalItems - 1 && event.deltaY > 0 && !isAnimating) {
-      return;
-    }
-
-    // Throttling para evitar múltiples activaciones
-    const now = Date.now();
-    if (now - lastScrollTime < scrollThreshold) {
-      event.preventDefault();
-      return;
-    }
-
-    const delta = event.deltaY;
-
-    if (delta > 0) {
-      // Scroll hacia abajo
-      if (currentIndex < totalItems - 1) {
-        lastScrollTime = now;
-        event.preventDefault();
-        showItem(currentIndex + 1, "next");
-      }
-    } else {
-      // Scroll hacia arriba
-      if (currentIndex > 0) {
-        lastScrollTime = now;
-        event.preventDefault();
-        showItem(currentIndex - 1, "prev");
-      }
-    }
-  }
-
-  // Manejador de teclas de flecha
-  function handleKeyDown(event) {
-    if (!isInViewport) return;
-
-    if (
-      blockPageScroll &&
-      (event.key === "ArrowDown" || event.key === "ArrowUp")
-    ) {
-      event.preventDefault();
-    }
-
-    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-      if (currentIndex < totalItems - 1) {
-        event.preventDefault();
-        showItem(currentIndex + 1, "next");
-      }
-    } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-      if (currentIndex > 0) {
-        event.preventDefault();
-        showItem(currentIndex - 1, "prev");
-      }
-    }
-  }
-
-  // Soporte para eventos táctiles (swipe)
-  let touchStartY;
-
-  function handleTouchStart(event) {
-    if (!isInViewport) return;
-    touchStartY = event.touches[0].clientY;
-  }
-
-  function handleTouchEnd(event) {
-    if (!isInViewport) return;
-
-    const touchEndY = event.changedTouches[0].clientY;
-    const diffY = touchStartY - touchEndY;
-
-    // Umbral para considerar un swipe
-    if (Math.abs(diffY) > 50) {
-      if (diffY > 0 && currentIndex < totalItems - 1) {
-        // Swipe hacia arriba - siguiente item
-        showItem(currentIndex + 1, "next");
-      } else if (diffY < 0 && currentIndex > 0) {
-        // Swipe hacia abajo - item anterior
-        showItem(currentIndex - 1, "prev");
-      }
-    }
-  }
-
-  // Agregar evento de clic a cada dot
-  dots.forEach((dot) => {
-    dot.addEventListener("click", handleDotClick);
-  });
-
-  // Registrar eventos
-  window.addEventListener("wheel", preventScroll, { passive: false });
-  window.addEventListener("touchmove", preventScroll, { passive: false });
-  detailSection.addEventListener("wheel", handleWheel, { passive: false });
-  document.addEventListener("keydown", handleKeyDown);
-  detailSection.addEventListener("touchstart", handleTouchStart, {
-    passive: true,
-  });
-  detailSection.addEventListener("touchend", handleTouchEnd, { passive: true });
-
-  // Observador de intersección para detectar cuando la sección está en el viewport
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        isInViewport = entry.isIntersecting && entry.intersectionRatio >= 0.7;
-
-        // Si ya no estamos en el viewport, aseguramos que el scroll no esté bloqueado
-        if (!isInViewport) {
-          blockPageScroll = false;
         }
-      });
-    },
-    {
-      threshold: [0.3, 0.5, 0.7, 0.9], // Diferentes umbrales para detección más precisa
-    }
-  );
 
-  observer.observe(detailSection);
+        currentIndex = index;
+      }
 
-  // Inicializar el primer item
-  showItem(0);
+      // Función para manejar el clic en los dots
+      function handleDotClick(event) {
+        if (isAnimating) return;
+        const targetIndex = parseInt(event.target.getAttribute("data-index"), 10);
+        if (targetIndex !== currentIndex) {
+          showItem(targetIndex, "auto");
+        }
+      }
 
-  // Inicializar la navegación
-  updateNavigation();
+      // Verificar si un elemento está en el viewport
+      function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const isFullyInView = rect.top >= 0 && rect.bottom <= viewportHeight;
+        const isPartiallyInView = rect.top <= viewportHeight * 0.3 && rect.bottom >= viewportHeight * 0.3;
+        return isPartiallyInView;
+      }
 
-  // Devolvemos una función de limpieza para cuando ya no necesitemos esta funcionalidad
-  return {
-    cleanup: () => {
-      window.removeEventListener("wheel", preventScroll);
-      window.removeEventListener("touchmove", preventScroll);
-      detailSection.removeEventListener("wheel", handleWheel);
-      document.removeEventListener("keydown", handleKeyDown);
-      detailSection.removeEventListener("touchstart", handleTouchStart);
-      detailSection.removeEventListener("touchend", handleTouchEnd);
+      // Manejador de eventos de rueda
+      function handleWheel(event) {
+        isInViewport = isElementInViewport(detailSection);
+        if (!isInViewport) return;
+
+        if ((currentIndex > 0 && currentIndex < totalItems - 1) || isAnimating) {
+          event.preventDefault();
+        }
+
+        if (currentIndex === 0 && event.deltaY < 0 && !isAnimating) return;
+        if (currentIndex === totalItems - 1 && event.deltaY > 0 && !isAnimating) return;
+
+        const now = Date.now();
+        if (now - lastScrollTime < scrollThreshold) {
+          event.preventDefault();
+          return;
+        }
+
+        const delta = event.deltaY;
+        if (delta > 0 && currentIndex < totalItems - 1) {
+          lastScrollTime = now;
+          event.preventDefault();
+          showItem(currentIndex + 1, "next");
+        } else if (delta < 0 && currentIndex > 0) {
+          lastScrollTime = now;
+          event.preventDefault();
+          showItem(currentIndex - 1, "prev");
+        }
+      }
+
+      // Manejador de teclas
+      function handleKeyDown(event) {
+        if (!isInViewport) return;
+
+        if (blockPageScroll && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
+          event.preventDefault();
+        }
+
+        if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+          if (currentIndex < totalItems - 1) {
+            event.preventDefault();
+            showItem(currentIndex + 1, "next");
+          }
+        } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+          if (currentIndex > 0) {
+            event.preventDefault();
+            showItem(currentIndex - 1, "prev");
+          }
+        }
+      }
+
+      // Agregar eventos
       dots.forEach((dot) => {
-        dot.removeEventListener("click", handleDotClick);
+        dot.addEventListener("click", handleDotClick);
       });
-      observer.disconnect();
-      document.head.removeChild(style);
-    },
-    goToItem: showItem,
-  };
-};
+      
+      mobileDots.forEach((dot) => {
+        dot.addEventListener("click", function() {
+          const index = parseInt(this.getAttribute("data-index"), 10);
+          showItem(index);
+        });
+      });
 
-const detailMobileSwiper = () => {
-  const swiperContainer = document.querySelector(".swiperDetailMobile");
+      window.addEventListener("wheel", handleWheel, { passive: false });
+      document.addEventListener("keydown", handleKeyDown);
 
-  // Verificar si el contenedor existe
-  if (!swiperContainer) return;
+      // Observador de intersección
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isInViewport = entry.isIntersecting && entry.intersectionRatio >= 0.7;
+            if (!isInViewport) blockPageScroll = false;
+          });
+        },
+        { threshold: [0.3, 0.5, 0.7, 0.9] }
+      );
 
-  if (window.innerWidth >= 1100) return;
+      observer.observe(detailSection);
 
-  const containerWidth = swiperContainer.offsetWidth;
-  const slideWidth = 290;
+      // Inicializar
+      showItem(0);
+      updateNavigation();
 
-  // Elementos que se actualizarán
-  const titleElement = document.getElementById("detailMobileTitle");
-  const imageElement = document.getElementById("detailMobileImage");
-  const textElement = document.getElementById("detailMobileText");
+      return {
+        cleanup: () => {
+          window.removeEventListener("wheel", handleWheel);
+          document.removeEventListener("keydown", handleKeyDown);
+          dots.forEach((dot) => {
+            dot.removeEventListener("click", handleDotClick);
+          });
+          observer.disconnect();
+        },
+        goToItem: showItem,
+      };
+    };
 
-  // Verificar que los elementos existan
-  if (!titleElement || !imageElement || !textElement) return;
-
-  const swiper = new Swiper(".swiperDetailMobile", {
-    centeredSlides: false,
-    slidesPerView: "auto",
-    spaceBetween: 20,
-    slidesOffsetAfter: containerWidth - slideWidth,
-    on: {
-      resize: function () {
-        const newContainerWidth = swiperContainer.offsetWidth;
-        this.params.slidesOffsetAfter = newContainerWidth - slideWidth;
-        this.update();
-      },
-      init: function () {
-        // Verificar que haya slides antes de intentar acceder a ellos
-        if (this.slides && this.slides.length > 0) {
-          updateContentFromSlide(this.slides[0]);
+    // Función para el swiper en móvil
+    const detailMobileSwiper = () => {
+      const swiperContainer = document.querySelector(".swiperDetailMobile");
+      if (!swiperContainer) return;
+      
+      // Elementos que se actualizarán
+      const titleElement = document.getElementById("detailMobileTitle");
+      const textElement = document.getElementById("detailMobileText");
+      
+      // Inicializar Swiper
+      const swiper = new Swiper(".swiperDetailMobile", {
+        centeredSlides: false,
+        slidesPerView: "auto",
+        spaceBetween: 20,
+        loop: false,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        on: {
+          init: function() {
+            const activeSlide = this.slides[this.activeIndex];
+            if (activeSlide) {
+              const title = activeSlide.getAttribute("data-title") || "";
+              const text = activeSlide.getAttribute("data-text") || "";
+              
+              titleElement.src = activeSlide.getAttribute("data-image");
+              titleElement.alt = title;
+              textElement.textContent = text;
+              
+              // Actualizar puntos de navegación
+              document.querySelectorAll('.mobile-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === this.activeIndex);
+              });
+            }
+          },
+          slideChange: function() {
+            const activeSlide = this.slides[this.activeIndex];
+            if (activeSlide) {
+              const title = activeSlide.getAttribute("data-title") || "";
+              const text = activeSlide.getAttribute("data-text") || "";
+              
+              titleElement.src = activeSlide.getAttribute("data-image");
+              titleElement.alt = title;
+              textElement.textContent = text;
+              
+              // Actualizar puntos de navegación
+              document.querySelectorAll('.mobile-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === this.activeIndex);
+              });
+            }
+          }
         }
-      },
-      slideChange: function () {
-        // Verificar que haya un slide activo antes de intentar acceder a él
-        if (
-          this.slides &&
-          this.activeIndex !== undefined &&
-          this.slides[this.activeIndex]
-        ) {
-          const activeSlide = this.slides[this.activeIndex];
-          updateContentFromSlide(activeSlide);
+      });
+      
+      // Manejar clic en los puntos de navegación móvil
+      document.querySelectorAll('.mobile-dot').forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          swiper.slideTo(index);
+        });
+      });
+    };
+
+    // Inicializar cuando el documento esté listo
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.innerWidth >= 1100) {
+        scrollDetail();
+      } else {
+        detailMobileSwiper();
+      }
+      
+      // Manejar redimensionamiento
+      window.addEventListener("resize", function() {
+        if (window.innerWidth < 1100) {
+          detailMobileSwiper();
         }
-      },
-    },
-  });
-
-  function updateContentFromSlide(slide) {
-    // Verificar que el slide exista antes de intentar obtener sus atributos
-    if (!slide) return;
-
-    const title = slide.getAttribute("data-title") || "";
-    const imageSrc = slide.getAttribute("data-image") || "";
-    const text = slide.getAttribute("data-text") || "";
-
-    titleElement.textContent = title;
-    imageElement.src = imageSrc;
-    imageElement.alt = title;
-    textElement.textContent = text;
-  }
-};
-
-scrollDetail();
-
-</script>
+      });
+    });
+  </script>
+</body>
 </html>
